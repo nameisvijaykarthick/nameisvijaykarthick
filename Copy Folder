@@ -1,0 +1,13 @@
+import os
+import shutil
+from openpyxl import load_workbook
+
+wb1 = load_workbook(filename=r'E:\input1.xlsx', read_only=True)
+ws1 = wb1['Sheet1']
+name_list = [str(row[0].value) for i, row in enumerate(ws1.rows) if i>=1]
+path = r'E:\Desktop 2\My Data\My\My Code\Copy Name Link\Ref2\\'
+new_path = r'E:\Desktop 2\My Data\My\My Code\Copy Name Link\Ref\\'
+for i in os.listdir(path):
+    if i in name_list:
+        shutil.copy(os.path.join(path, i), os.path.join(new_path, i))
+        print(i)
